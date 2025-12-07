@@ -1,43 +1,3 @@
-<thinking
-O usuário está pedindo um **sistema completo de CRM** com funcionalidades avançadas. Vou interpretar isso como:
-
-1. **Sistema de autenticação completo** com 20 contas membro + 1 conta admin
-2. **Dashboard financeiro** com gráficos em tempo real 
-3. **Controle administrativo** para gerenciar usuários
-4. **Banco de dados SQL** integrado
-5. **Design preto e branco** com SVGs
-
-Vou usar React + Node.js + SQLite porque:
-- React oferece a melhor experiência para dashboards interativos
-- Node.js permite backend robusto
-- SQLite é fácil de configurar e funciona sem setup complexo
-
-O sistema terá:
-- **Frontend**: React com Vite, Chart.js para gráficos, Tailwind CSS
-- **Backend**: Node.js com Express, SQLite3, bcrypt para senhas
-- **Banco**: SQLite com tabelas users, expenses, budgets
-
-Estrutura de arquivos:
-- **preview.html**: Preview standalone
-- **package.json**: Dependências frontend e backend
-- **server/index.js**: Backend Node.js
-- **server/database.js**: Configuração SQLite
-- **server/routes/auth.js**: Rotas de autenticação
-- **server/routes/admin.js**: Controle administrativo
-- **server/routes/finance.js**: Dados financeiros
-- **src/App.jsx**: App React completo
-- **src/components/**: Múltiplos componentes (Login, Dashboard, AdminPanel, etc.)
-
-As páginas principais serão:
-1. **Login** - Autenticação segura
-2. **Dashboard** - Gráficos de gastos/orçamentos em tempo real
-3. **Admin Panel** - Gerenciar os 20 usuários
-4. **Profile** - Perfil do usuário
-5. **Settings** - Configurações
-
-O design será elegante em preto e branco com SVGs personalizados.
-</thinking>
-
 <project framework="react" backend="nodejs" hasDatabase="true">
 <file path="preview.html">
 <!DOCTYPE html>
@@ -3151,4 +3111,67 @@ Sistema completo de CRM com dashboards financeiros, gerenciamento de usuários e
 - **Atualização automática** no banco de dados
 
 ### Banco de Dados
-- **SQLite integrado**: Fácil configura
+- **SQLite integrado**: Fácil configuração
+- **Estrutura completa**: Usuários, despesas, orçamentos
+- **Relacionamentos**: Chaves estrangeiras e constraints
+
+### Segurança
+- **Autenticação JWT**: Tokens de acesso seguros
+- **Criptografia de senhas**: bcrypt
+- **Validação de dados**: Campos obrigatórios e formatos
+
+## Tecnologias
+
+### Frontend (React)
+- **React 18**: Biblioteca de interface
+- **Vite**: Build tool rápido
+- **Tailwind CSS**: Estilização
+- **Chart.js**: Gráficos interativos
+- **React Router**: Navegação
+
+### Backend (Node.js)
+- **Express**: Framework web
+- **SQLite3**: Banco de dados
+- **bcryptjs**: Criptografia de senhas
+- **jsonwebtoken**: Autenticação JWT
+- **CORS**: Comunicação segura
+
+## Instalação
+
+### Pré-requisitos
+- Node.js (versão 16 ou superior)
+- npm ou yarn
+
+### Passo a passo
+
+1. **Clone o repositório**
+   ```bash
+   git clone <seu-repositorio>
+   cd crm-financeiro
+   ```
+
+2. **Instale as dependências**
+   ```bash
+   npm install
+   npm run install:client
+   ```
+
+3. **Inicie o servidor**
+   ```bash
+   npm run dev
+   ```
+
+4. **Acesse o sistema**
+   - Frontend: http://localhost:3000
+   - Backend: http://localhost:3001/api
+
+## Estrutura de Arquivos
+
+```
+crm-financeiro/
+├── client/                 # Frontend React
+│   ├── src/
+│   │   ├── components/     # Componentes React
+│   │   ├── hooks/         # Hooks personalizados
+│   │   ├── services/      # Serviços de API
+│   │   └── App.jsx        # App principal
