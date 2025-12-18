@@ -3,274 +3,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM Financeiro - Dashboard</title>
+    <title>MCP Server Dashboard - Preview</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            50: '#f5f5f5',
-                            100: '#e5e5e5',
-                            200: '#d4d4d4',
-                            300: '#a3a3a3',
-                            400: '#737373',
-                            500: '#525252',
-                            600: '#404040',
-                            700: '#262626',
-                            800: '#171717',
-                            900: '#0a0a0a'
-                        }
-                    }
-                }
-            }
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-    </script>
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .status-online { background-color: #10b981; }
+        .status-offline { background-color: #ef4444; }
+        .status-warning { background-color: #f59e0b; }
+    </style>
 </head>
-<body class="bg-white text-gray-900">
-    <!-- Header -->
-    <header class="bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-4">
-                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
-                    </svg>
-                    <h1 class="text-2xl font-bold">CRM Financeiro</h1>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">MCP</span>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <div class="text-xl font-bold text-gray-900">MCP Server Dashboard</div>
+                        <div class="text-xs text-gray-500">Multi-Channel Protocol Manager</div>
+                    </div>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <span class="text-sm">Olá, Admin</span>
-                    <button class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-md transition-colors">
-                        Sair
+                    <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
+                        <span class="status-dot status-online"></span>Conectado
+                    </span>
+                    <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                        Atualizar Status
                     </button>
                 </div>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <!-- Admin Panel -->
-        <div class="bg-gray-50 rounded-lg p-6 mb-8">
-            <h2 class="text-xl font-bold mb-4">Painel Administrativo</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Hero Section -->
+    <div class="gradient-bg text-white">
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Filtrar Membros</label>
-                    <input type="text" placeholder="Buscar por nome, email ou ID..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900">
-                </div>
-                <div class="flex items-end space-x-2">
-                    <button class="bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-md transition-colors">
-                        Exportar Dados
-                    </button>
-                    <button class="bg-white hover:bg-gray-100 border border-gray-300 px-4 py-2 rounded-md transition-colors">
-                        Atualizar
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Members Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Member Card 1 -->
-            <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
-                <div class="flex justify-between items-start mb-4">
-                    <div>
-                        <h3 class="font-bold text-lg">Membro 01</h3>
-                        <p class="text-sm text-gray-600">ID: MBR001</p>
-                    </div>
-                    <span class="text-xs bg-gray-200 text-gray-800 px-2 py-1 rounded-full">Ativo</span>
-                </div>
-                <div class="space-y-3">
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Email</label>
-                        <input type="email" value="membro01@empresa.com" class="w-full px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-gray-900">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Nova Senha</label>
-                        <input type="password" placeholder="******" class="w-full px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-gray-900">
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="bg-gray-900 hover:bg-gray-800 text-white px-3 py-1 rounded text-sm transition-colors w-full">
-                            Atualizar
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                        Gerencie seus servidores MCP de forma simples e eficiente
+                    </h1>
+                    <p class="text-lg text-white/90 mb-8">
+                        Conecte-se a servidores MCP, monitore status em tempo real, controle operações e visualize logs detalhados. Tudo em um único dashboard intuitivo.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="px-6 py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-gray-100 transition">
+                            Conectar Servidor
                         </button>
-                        <button class="bg-white hover:bg-gray-100 border border-gray-300 px-3 py-1 rounded text-sm transition-colors">
-                            Reset
+                        <button class="px-6 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition">
+                            Ver Documentação
                         </button>
                     </div>
                 </div>
-                <div class="mt-4 pt-4 border-t border-gray-200">
-                    <div class="flex justify-between text-sm">
-                        <span class="text-gray-600">Último Login:</span>
-                        <span>15/03/2024</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Member Card 2 -->
-            <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
-                <div class="flex justify-between items-start mb-4">
-                    <div>
-                        <h3 class="font-bold text-lg">Membro 02</h3>
-                        <p class="text-sm text-gray-600">ID: MBR002</p>
-                    </div>
-                    <span class="text-xs bg-gray-200 text-gray-800 px-2 py-1 rounded-full">Ativo</span>
-                </div>
-                <div class="space-y-3">
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Email</label>
-                        <input type="email" value="membro02@empresa.com" class="w-full px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-gray-900">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Nova Senha</label>
-                        <input type="password" placeholder="******" class="w-full px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-gray-900">
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="bg-gray-900 hover:bg-gray-800 text-white px-3 py-1 rounded text-sm transition-colors w-full">
-                            Atualizar
-                        </button>
-                        <button class="bg-white hover:bg-gray-100 border border-gray-300 px-3 py-1 rounded text-sm transition-colors">
-                            Reset
-                        </button>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-gray-200">
-                    <div class="flex justify-between text-sm">
-                        <span class="text-gray-600">Último Login:</span>
-                        <span>14/03/2024</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Member Card 3 -->
-            <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
-                <div class="flex justify-between items-start mb-4">
-                    <div>
-                        <h3 class="font-bold text-lg">Membro 03</h3>
-                        <p class="text-sm text-gray-600">ID: MBR003</p>
-                    </div>
-                    <span class="text-xs bg-gray-200 text-gray-800 px-2 py-1 rounded-full">Ativo</span>
-                </div>
-                <div class="space-y-3">
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Email</label>
-                        <input type="email" value="membro03@empresa.com" class="w-full px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-gray-900">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Nova Senha</label>
-                        <input type="password" placeholder="******" class="w-full px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-gray-900">
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="bg-gray-900 hover:bg-gray-800 text-white px-3 py-1 rounded text-sm transition-colors w-full">
-                            Atualizar
-                        </button>
-                        <button class="bg-white hover:bg-gray-100 border border-gray-300 px-3 py-1 rounded text-sm transition-colors">
-                            Reset
-                        </button>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-gray-200">
-                    <div class="flex justify-between text-sm">
-                        <span class="text-gray-600">Último Login:</span>
-                        <span>13/03/2024</span>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                    <div class="bg-gray-900 rounded-lg p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-white font-semibold">Conexão MCP</h3>
+                            <span class="px-3 py-1 bg-green-500 text-white text-sm rounded-full">
+                                Ativa
+                            </span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="bg-gray-800 rounded p-3">
+                                <div class="text-gray-300 text-sm">URL do Servidor</div>
+                                <div class="text-white font-mono text-sm">https://mcp-server.example.com</div>
+                            </div>
+                            <div class="bg-gray-800 rounded p-3">
+                                <div class="text-gray-300 text-sm">Status</div>
+                                <div class="text-white">Online - Pronto para operação</div>
+                            </div>
+                            <div class="bg-gray-800 rounded p-3">
+                                <div class="text-gray-300 text-sm">Latência</div>
+                                <div class="text-white">45ms</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Dashboard Charts -->
-        <div class="mt-12">
-            <h2 class="text-2xl font-bold mb-6">Dashboard de Gastos e Orçamentos</h2>
+    <!-- Features -->
+    <div class="max-w-7xl mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Funcionalidades Principais</h2>
+            <p class="text-gray-600">Tudo que você precisa para gerenciar seus servidores MCP</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Status Monitoring -->
+            <div class="card-hover bg-white rounded-xl shadow-lg p-6">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-blue-600 text-xl">📊</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">Monitoramento de Status</h3>
+                <p class="text-gray-600 mb-4">
+                    Verifique o status dos servidores MCP em tempo real, incluindo disponibilidade, latência e indicadores de saúde.
+                </p>
+                <ul class="space-y-2 text-sm text-gray-500">
+                    <li>✓ Status online/offline</li>
+                    <li>✓ Latência de conexão</li>
+                    <li>✓ Indicadores de saúde</li>
+                    <li>✓ Alertas em tempo real</li>
+                </ul>
+            </div>
+
+            <!-- Control Operations -->
+            <div class="card-hover bg-white rounded-xl shadow-lg p-6">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-green-600 text-xl">⚙️</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">Operações de Controle</h3>
+                <p class="text-gray-600 mb-4">
+                    Execute comandos e operações nos servidores MCP, como iniciar, parar, reiniciar e enviar comandos personalizados.
+                </p>
+                <ul class="space-y-2 text-sm text-gray-500">
+                    <li>✓ Iniciar/Parar servidores</li>
+                    <li>✓ Reiniciar serviços</li>
+                    <li>✓ Comandos personalizados</li>
+                    <li>✓ Execução em lote</li>
+                </ul>
+            </div>
+
+            <!-- Logs Viewer -->
+            <div class="card-hover bg-white rounded-xl shadow-lg p-6">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-purple-600 text-xl">📋</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">Visualizador de Logs</h3>
+                <p class="text-gray-600 mb-4">
+                    Visualize logs detalhados dos servidores MCP com filtros por nível, data e palavras-chave. Exporte quando necessário.
+                </p>
+                <ul class="space-y-2 text-sm text-gray-500">
+                    <li>✓ Filtros avançados</li>
+                    <li>✓ Exportação de logs</li>
+                    <li>✓ Busca em tempo real</li>
+                    <li>✓ Níveis de log</li>
+                </ul>
+            </div>
+
+            <!-- Configuration -->
+            <div class="card-hover bg-white rounded-xl shadow-lg p-6">
+                <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-yellow-600 text-xl">🔧</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">Configurações</h3>
+                <p class="text-gray-600 mb-4">
+                    Gerencie configurações avançadas dos servidores MCP, incluindo parâmetros de conexão, timeouts e opções de segurança.
+                </p>
+                <ul class="space-y-2 text-sm text-gray-500">
+                    <li>✓ Parâmetros de conexão</li>
+                    <li>✓ Timeouts configuráveis</li>
+                    <li>✓ Segurança avançada</li>
+                    <li>✓ Backup de configurações</li>
+                </ul>
+            </div>
+
+            <!-- Real-time Updates -->
+            <div class="card-hover bg-white rounded-xl shadow-lg p-6">
+                <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-red-600 text-xl">⚡</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">Atualizações em Tempo Real</h3>
+                <p class="text-gray-600 mb-4">
+                    Receba atualizações instantâneas sobre o status dos servidores e eventos críticos através de notificações em tempo real.
+                </p>
+                <ul class="space-y-2 text-sm text-gray-500">
+                    <li>✓ WebSocket integrado</li>
+                    <li>✓ Notificações push</li>
+                    <li>✓ Atualização automática</li>
+                    <li>✓ Eventos críticos</li>
+                </ul>
+            </div>
+
+            <!-- Security -->
+            <div class="card-hover bg-white rounded-xl shadow-lg p-6">
+                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-indigo-600 text-xl">🔒</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">Segurança Avançada</h3>
+                <p class="text-gray-600 mb-4">
+                    Conexões seguras com autenticação robusta, criptografia de dados e auditoria de acesso para proteger seus servidores.
+                </p>
+                <ul class="space-y-2 text-sm text-gray-500">
+                    <li>✓ Autenticação JWT</li>
+                    <li>✓ Criptografia TLS</li>
+                    <li>✓ Auditoria de acesso</li>
+                    <li>✓ Registros de auditoria</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- URL Input Section -->
+    <div class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="bg-gray-800 rounded-xl p-8">
+                <h2 class="text-2xl font-bold mb-6">Conecte-se ao seu Servidor MCP</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">URL do Servidor MCP</label>
+                        <input type="url" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="https://mcp-server.example.com" />
+                        <p class="text-gray-400 text-sm mt-2">Insira a URL completa do seu servidor MCP para iniciar a conexão.</p>
+                    </div>
+                    <div class="flex items-end">
+                        <button class="w-full px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">
+                            Conectar ao Servidor
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mt-8 grid md:grid-cols-3 gap-4">
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="text-sm text-gray-300">Status da Conexão</div>
+                                <div class="font-semibold">Aguardando conexão</div>
+                            </div>
+                            <span class="px-3 py-1 bg-gray-600 text-white text-sm rounded-full">
+                                <span class="status-dot status-warning"></span>Pronto
+                            </span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="text-sm text-gray-300">Servidores Conectados</div>
+                                <div class="font-semibold">0</div>
+                            </div>
+                            <span class="px-3 py-1 bg-green-600 text-white text-sm rounded-full">
+                                <span class="status-dot status-online"></span>Online
+                            </span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="text-sm text-gray-300">Última Atualização</div>
+                                <div class="font-semibold">Nunca</div>
+                            </div>
+                            <span class="px-3 py-1 bg-blue-600 text-white text-sm rounded-full">
+                                ⏰ Automático
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Functions List -->
+    <div class="max-w-7xl mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Funções Disponíveis</h2>
+            <p class="text-gray-600">Operações que podem ser executadas nos servidores MCP</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="font-semibold text-gray-900 mb-2">getServerStatus</h3>
+                <p class="text-gray-600 text-sm">Obtém o status atual do servidor</p>
+                <div class="mt-4 p-3 bg-gray-100 rounded">
+                    <code class="text-xs">GET /api/mcp/status</code>
+                </div>
+            </div>
             
-            <!-- Charts Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Chart 1 -->
-                <div class="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 class="font-bold text-lg mb-4">Gastos Mensais</h3>
-                    <div class="h-64 flex items-end space-x-2">
-                        <div class="flex-1 bg-gray-200 rounded-sm">
-                            <div class="bg-gray-900 h-48 rounded-sm"></div>
-                        </div>
-                        <div class="flex-1 bg-gray-200 rounded-sm">
-                            <div class="bg-gray-900 h-32 rounded-sm"></div>
-                        </div>
-                        <div class="flex-1 bg-gray-200 rounded-sm">
-                            <div class="bg-gray-900 h-56 rounded-sm"></div>
-                        </div>
-                        <div class="flex-1 bg-gray-200 rounded-sm">
-                            <div class="bg-gray-900 h-24 rounded-sm"></div>
-                        </div>
-                        <div class="flex-1 bg-gray-200 rounded-sm">
-                            <div class="bg-gray-900 h-40 rounded-sm"></div>
-                        </div>
-                        <div class="flex-1 bg-gray-200 rounded-sm">
-                            <div class="bg-gray-900 h-64 rounded-sm"></div>
-                        </div>
-                    </div>
-                    <div class="flex justify-between text-xs text-gray-500 mt-2">
-                        <span>Janeiro</span>
-                        <span>Fevereiro</span>
-                        <span>Março</span>
-                        <span>Abril</span>
-                        <span>Maio</span>
-                        <span>Junho</span>
-                    </div>
-                </div>
-
-                <!-- Chart 2 -->
-                <div class="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 class="font-bold text-lg mb-4">Comparativo Orçamento vs Real</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm">Orçamento</span>
-                            <div class="flex-1 mx-4 bg-gray-200 rounded-full h-2">
-                                <div class="bg-gray-900 h-2 rounded-full w-3/4"></div>
-                            </div>
-                            <span class="text-sm font-bold">R$ 50.000</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm">Realizado</span>
-                            <div class="flex-1 mx-4 bg-gray-200 rounded-full h-2">
-                                <div class="bg-gray-600 h-2 rounded-full w-5/6"></div>
-                            </div>
-                            <span class="text-sm font-bold">R$ 62.500</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm">Despesas</span>
-                            <div class="flex-1 mx-4 bg-gray-200 rounded-full h-2">
-                                <div class="bg-gray-400 h-2 rounded-full w-2/3"></div>
-                            </div>
-                            <span class="text-sm font-bold">R$ 41.667</span>
-                        </div>
-                    </div>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="font-semibold text-gray-900 mb-2">startServer</h3>
+                <p class="text-gray-600 text-sm">Inicia o servidor MCP</p>
+                <div class="mt-4 p-3 bg-gray-100 rounded">
+                    <code class="text-xs">POST /api/mcp/start</code>
                 </div>
             </div>
-
-            <!-- Summary Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                <div class="bg-white border border-gray-200 rounded-lg p-6">
-                    <h4 class="text-sm text-gray-500 mb-2">Total de Membros</h4>
-                    <p class="text-3xl font-bold">20</p>
-                    <p class="text-xs text-gray-400 mt-2">Ativos no sistema</p>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="font-semibold text-gray-900 mb-2">stopServer</h3>
+                <p class="text-gray-600 text-sm">Para o servidor MCP</p>
+                <div class="mt-4 p-3 bg-gray-100 rounded">
+                    <code class="text-xs">POST /api/mcp/stop</code>
                 </div>
-                <div class="bg-white border border-gray-200 rounded-lg p-6">
-                    <h4 class="text-sm text-gray-500 mb-2">Orçamento Total</h4>
-                    <p class="text-3xl font-bold">R$ 1.200.000</p>
-                    <p class="text-xs text-gray-400 mt-2">Anual previsto</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="font-semibold text-gray-900 mb-2">restartServer</h3>
+                <p class="text-gray-600 text-sm">Reinicia o servidor MCP</p>
+                <div class="mt-4 p-3 bg-gray-100 rounded">
+                    <code class="text-xs">POST /api/mcp/restart</code>
                 </div>
-                <div class="bg-white border border-gray-200 rounded-lg p-6">
-                    <h4 class="text-sm text-gray-500 mb-2">Despesas Totais</h4>
-                    <p class="text-3xl font-bold">R$ 950.000</p>
-                    <p class="text-xs text-gray-400 mt-2">Gastos realizados</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="font-semibold text-gray-900 mb-2">getLogs</h3>
+                <p class="text-gray-600 text-sm">Obtém logs do servidor</p>
+                <div class="mt-4 p-3 bg-gray-100 rounded">
+                    <code class="text-xs">GET /api/mcp/logs</code>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="font-semibold text-gray-900 mb-2">sendCommand</h3>
+                <p class="text-gray-600 text-sm">Envia comando personalizado</p>
+                <div class="mt-4 p-3 bg-gray-100 rounded">
+                    <code class="text-xs">POST /api/mcp/command</code>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="font-semibold text-gray-900 mb-2">getConfig</h3>
+                <p class="text-gray-600 text-sm">Obtém configurações</p>
+                <div class="mt-4 p-3 bg-gray-100 rounded">
+                    <code class="text-xs">GET /api/mcp/config</code>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="font-semibold text-gray-900 mb-2">updateConfig</h3>
+                <p class="text-gray-600 text-sm">Atualiza configurações</p>
+                <div class="mt-4 p-3 bg-gray-100 rounded">
+                    <code class="text-xs">PUT /api/mcp/config</code>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="font-semibold text-gray-900 mb-2">pingServer</h3>
+                <p class="text-gray-600 text-sm">Testa conectividade</p>
+                <div class="mt-4 p-3 bg-gray-100 rounded">
+                    <code class="text-xs">GET /api/mcp/ping</code>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <p class="text-center text-sm">© 2024 CRM Financeiro. Todos os direitos reservados.</p>
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-semibold mb-4">MCP Dashboard</h3>
+                    <p class="text-gray-400 text-sm">Solução completa para gerenciamento de servidores MCP com interface intuitiva e funcionalidades avançadas.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Links Úteis</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white">Documentação</a></li>
+                        <li><a href="#" class="hover:text-white">API Reference</a></li>
+                        <li><a href="#" class="hover:text-white">Suporte Técnico</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Segurança</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white">Política de Privacidade</a></li>
+                        <li><a href="#" class="hover:text-white">Termos de Uso</a></li>
+                        <li><a href="#" class="hover:text-white">Segurança de Dados</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contato</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>📧 contato@mcpdashboard.com</li>
+                        <li>📞 +55 (11) 98765-4321</li>
+                        <li>📍 São Paulo, SP</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                © 2024 MCP Dashboard. Todos os direitos reservados.
+            </div>
         </div>
     </footer>
 </body>
